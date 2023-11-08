@@ -54,7 +54,7 @@ const body=html;
 sendEmail(to_to,subject,body);*/
 
 app.get("/",(req,res,next)=>{
-    res.send("hello shady");
+    res.send("hello shady from backend");
 })
 app.get("/get",async(req,res,next)=>{
     //console.log(req.headers);
