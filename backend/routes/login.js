@@ -1,7 +1,7 @@
 const Joi=require("joi");
 const express=require("express");
 const router=express.Router();
-//const bcrypt=require("bcrypt");
+const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 const generateToken = require("../utiles/genAuthToken");
 const User=require('../models/user');
@@ -96,8 +96,8 @@ router.post('/auth-google',async(req,res,next)=>{
       else if(user.length==0)
       {
         //const password=
-        ////const salt=await bcrypt.genSalt(10);
-        ////const pass=await bcrypt.hash(req.body.password,salt); 
+        const salt=await bcrypt.genSalt(10);
+        const pass=await bcrypt.hash(req.body.password,salt); 
         const new_user=new User({
             name:req.body.name,
             password:pass,

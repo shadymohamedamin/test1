@@ -1,7 +1,7 @@
 const Joi=require("joi");
 const express=require("express");
 const router=express.Router();
-//const bcrypt=require("bcrypt");
+const bcrypt=require("bcrypt");
 const jwt=require("jsonwebtoken");
 const generateToken = require("../utiles/genAuthToken");
 const User=require('../models/user');
@@ -31,8 +31,8 @@ router.post("/",async(req,res)=>{
         password:req.body.password
     })
     //console.log(user.length);
-    ////const salt=await bcrypt.genSalt(10);
-    ////user.password=await bcrypt.hash(user.password,salt); 
+    const salt=await bcrypt.genSalt(10);
+    user.password=await bcrypt.hash(user.password,salt); 
   user=await user.save();
     //console.log(user);
     const token=generateToken(user);
